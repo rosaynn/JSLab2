@@ -13,20 +13,15 @@
  * @returns {string} рядок у camelCase / PascalCase для початкового дефіса
  */
 function camelize(str) {
-    if (typeof str !== 'string') {
-        return '';
+    const words = str.split('-');
+
+    for (let i = 1; i < words.length; i++) {
+        const letters = words[i].split('');
+        letters[0] = letters[0].charAt(0).toUpperCase();
+        words[i] = letters.join('');
     }
 
-    return str
-        .split('-')
-        .map((word, index) => {
-            if (index === 0) {
-                return word;
-            }
-
-            return word.charAt(0).toUpperCase() + word.slice(1);
-        })
-        .join('');
+    return words.join('');
 }
 
 /**
